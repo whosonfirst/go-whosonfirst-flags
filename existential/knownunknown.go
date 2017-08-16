@@ -55,5 +55,5 @@ func (f *KnownUnknownFlag) IsKnown() bool {
 }
 
 func (f *KnownUnknownFlag) String() string {
-	return fmt.Sprintf("FLAG %d IS TRUE %t IS FALSE %tIS  KNOWN %t", f.flag, f.IsTrue(), f.IsFalse(), f.IsKnown())
+	return fmt.Sprintf("FLAG %d IS TRUE %t IS FALSE %t IS  KNOWN %t", f.flag, f.IsTrue(), f.IsFalse(), f.IsKnown())
 }
