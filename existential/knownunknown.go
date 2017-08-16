@@ -55,7 +55,7 @@ func (f *KnownUnknownFlag) IsKnown() bool {
 	return f.confidence
 }
 
-func (f *KnownUnknownFlag) Match(other flags.ExistentialFlag) bool {
+func (f *KnownUnknownFlag) Matches(other flags.ExistentialFlag) bool {
 	return f.Flag() == other.Flag()
 }
 
