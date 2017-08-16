@@ -5,5 +5,6 @@ type ExistentialFlag interface {
 	IsTrue() bool
 	IsFalse() bool
 	IsKnown() bool
+	Matches(ExistentialFlag) bool
 	String() string
 }

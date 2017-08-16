@@ -55,6 +55,10 @@ func (f *KnownUnknownFlag) IsKnown() bool {
 	return f.confidence
 }
 
+func (f *NullFlag) Match(other flags.ExistentialFlag) bool {
+	return f.Flag() == other.Flag()
+}
+
 func (f *KnownUnknownFlag) String() string {
 	return fmt.Sprintf("FLAG %d IS TRUE %t IS FALSE %t IS  KNOWN %t", f.flag, f.IsTrue(), f.IsFalse(), f.IsKnown())
 }

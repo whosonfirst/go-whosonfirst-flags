@@ -30,6 +30,10 @@ func (f *NullFlag) IsKnown() bool {
 	return false
 }
 
+func (f *NullFlag) Match(other flags.ExistentialFlag) bool {
+	return true
+}
+
 func (f *NullFlag) String() string {
 	return "NULL"
 }
