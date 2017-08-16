@@ -25,6 +25,7 @@ func NewKnownUnknownFlag(i int64) flags.ExistentialFlag {
 		status = true
 		confidence = true
 	default:
+		i = -1 // just in case someone passes us garbage
 		status = false
 		confidence = false
 	}
