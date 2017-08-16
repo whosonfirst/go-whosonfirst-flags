@@ -8,7 +8,7 @@ type NullFlag struct {
 	flags.PlacetypesFlag
 }
 
-func NewNullsFlag() (*NullFlag, error) {
+func NewNullFlag() (*NullFlag, error) {
 
 	f := NullFlag{}
 	return &f, nil
