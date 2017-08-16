@@ -31,7 +31,7 @@ func NewKnownUnknownFlag(i int64) flags.ExistentialFlag {
 	f := KnownUnknownFlag{
 		flag:       i,
 		status:     status,
-		confidence: bool,
+		confidence: confidence,
 	}
 
 	return &f
