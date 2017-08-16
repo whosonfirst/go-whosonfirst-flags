@@ -14,7 +14,7 @@ self:   prep rmdeps
 	cp *.go src/github.com/whosonfirst/go-whosonfirst-flags
 	cp existential/*.go src/github.com/whosonfirst/go-whosonfirst-flags/existential/
 	cp placetypes/*.go src/github.com/whosonfirst/go-whosonfirst-flags/placetypes/
-	# cp -r vendor/src/* src/
+	cp -r vendor/src/* src/
 
 rmdeps:
 	if test -d src; then rm -rf src; fi 

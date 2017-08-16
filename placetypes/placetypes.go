@@ -1,20 +1,21 @@
 package placetypes
 
 import (
-	"github.com/go-whosonfirst-flags"
-	wof "github.com/go-whosonfirst-placetypes"
+	"github.com/whosonfirst/go-whosonfirst-flags"
+	wof "github.com/whosonfirst/go-whosonfirst-placetypes"
 	"strings"
 )
 
-type PlacetypesFlag struct {
+type WOFPlacetypeFlag struct {
 	flags.PlacetypeFlag
-	placetypes []*wof.WOFPlacetypes
-	names      []string
+	required []*wof.WOFPlacetype
+	names    []string
 }
 
-func NewPlacetypesFlag(str_placetypes string) (*PlacetypesFlag, error) {
+func NewWOFPlacetypeFlag(str_placetypes string) (*WOFPlacetypeFlag, error) {
 
-	require := make([]*wof.WOFPlacetypes, 0)
+	require := make([]*wof.WOFPlacetype, 0)
+	names := make([]string, 0)
 
 	for _, p := range strings.Split(str_placetypes, ",") {
 
@@ -30,15 +31,15 @@ func NewPlacetypesFlag(str_placetypes string) (*PlacetypesFlag, error) {
 		names = append(names, pt.Name)
 	}
 
-	f := PlacetypesFlag{
-		placetypes: possible,
-		names:      names,
+	f := WOFPlacetypeFlag{
+		required: require,
+		names:    names,
 	}
 
 	return &f, nil
 }
 
-func (f *PlacetypesFlag) Matches(other flag.PlacetypesFlag) bool {
+func (f *WOFPlacetypeFlag) Matches(other flags.PlacetypeFlag) bool {
 
 	ours := f.Placetypes()
 	theirs := other.Placetypes()
@@ -56,10 +57,10 @@ func (f *PlacetypesFlag) Matches(other flag.PlacetypesFlag) bool {
 	return false
 }
 
-func (f *PlacetypesFlag) Placetypes() []string {
+func (f *WOFPlacetypeFlag) Placetypes() []string {
 	return f.names
 }
 
-func (f *PlacetypesFlag) String() string {
+func (f *WOFPlacetypeFlag) String() string {
 	return strings.Join(f.Placetypes(), ",")
 }
