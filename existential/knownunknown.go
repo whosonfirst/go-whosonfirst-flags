@@ -1,7 +1,7 @@
 package existential
 
 import (
-       "github.com/whosonfirst/go-whosonfirst-flags"
+	"github.com/whosonfirst/go-whosonfirst-flags"
 )
 
 type KnownUnknownFlag struct {
@@ -51,11 +51,11 @@ func (f *KnownUnknownFlag) Confidence() bool {
 
 func (f *KnownUnknownFlag) Certain() bool {
 
-     if f.True() && f.Confidence() {
-     	return true
-     }
+	if f.True() && f.Confidence() {
+		return true
+	}
 
-     return false
+	return false
 }
 
 func (f *KnownUnknownFlag) String() string {

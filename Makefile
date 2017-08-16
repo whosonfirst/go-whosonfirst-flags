@@ -9,7 +9,9 @@ prep:
 self:   prep rmdeps
 	if test -d src; then rm -rf src; fi
 	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/
+	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/existential
 	cp *.go src/github.com/whosonfirst/go-whosonfirst-flags
+	cp existential/*.go src/github.com/whosonfirst/go-whosonfirst-flags/existential/
 	# cp -r vendor/src/* src/
 
 rmdeps:
@@ -27,5 +29,6 @@ vendor-deps: deps
 
 fmt:
 	go fmt *.go
+	go fmt existential/*.go
 
 bin:	self
