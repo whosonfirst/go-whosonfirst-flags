@@ -14,22 +14,22 @@ func NewNullFlag() flags.ExistentialFlag {
 	return &n
 }
 
-func (f *KnownUnknownFlag) Flag() int64 {
+func (f *NullFlag) Flag() int64 {
 	return -999
 }
 
-func (f *KnownUnknownFlag) IsTrue() bool {
+func (f *NullFlag) IsTrue() bool {
 	return false
 }
 
-func (f *KnownUnknownFlag) IsFalse() bool {
+func (f *NullFlag) IsFalse() bool {
 	return false
 }
 
-func (f *KnownUnknownFlag) IsKnown() bool {
+func (f *NullFlag) IsKnown() bool {
 	return false
 }
 
-func (f *KnownUnknownFlag) String() string {
+func (f *NullFlag) String() string {
 	return "NULL"
 }
