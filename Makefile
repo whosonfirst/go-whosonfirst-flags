@@ -12,6 +12,7 @@ self:   prep rmdeps
 	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/existential
 	cp *.go src/github.com/whosonfirst/go-whosonfirst-flags
 	cp existential/*.go src/github.com/whosonfirst/go-whosonfirst-flags/existential/
+	cp placetypes/*.go src/github.com/whosonfirst/go-whosonfirst-flags/placetypes/
 	# cp -r vendor/src/* src/
 
 rmdeps:
@@ -30,5 +31,6 @@ vendor-deps: deps
 fmt:
 	go fmt *.go
 	go fmt existential/*.go
+	go fmt placetypes/*.go
 
 bin:	self
