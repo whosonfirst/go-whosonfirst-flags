@@ -9,8 +9,8 @@ type ExistentialFlag interface {
 	String() string
 }
 
-type PlacetypeFlag interface {
-	Matches(PlacetypeFlag) bool
+type PlacetypesFlag interface {
+	Matches(PlacetypesFlag) bool
 	Placetypes() []string
 	String() string
 }

@@ -6,13 +6,13 @@ import (
 	"strings"
 )
 
-type WOFPlacetypeFlag struct {
-	flags.PlacetypeFlag
+type WOFPlacetypesFlag struct {
+	flags.PlacetypesFlag
 	required []*wof.WOFPlacetype
 	names    []string
 }
 
-func NewWOFPlacetypeFlag(str_placetypes string) (*WOFPlacetypeFlag, error) {
+func NewWOFPlacetypesFlag(str_placetypes string) (*WOFPlacetypesFlag, error) {
 
 	require := make([]*wof.WOFPlacetype, 0)
 	names := make([]string, 0)
@@ -31,7 +31,7 @@ func NewWOFPlacetypeFlag(str_placetypes string) (*WOFPlacetypeFlag, error) {
 		names = append(names, pt.Name)
 	}
 
-	f := WOFPlacetypeFlag{
+	f := WOFPlacetypesFlag{
 		required: require,
 		names:    names,
 	}
@@ -39,7 +39,7 @@ func NewWOFPlacetypeFlag(str_placetypes string) (*WOFPlacetypeFlag, error) {
 	return &f, nil
 }
 
-func (f *WOFPlacetypeFlag) Matches(other flags.PlacetypeFlag) bool {
+func (f *WOFPlacetypesFlag) Matches(other flags.PlacetypesFlag) bool {
 
 	ours := f.Placetypes()
 	theirs := other.Placetypes()
@@ -57,10 +57,10 @@ func (f *WOFPlacetypeFlag) Matches(other flags.PlacetypeFlag) bool {
 	return false
 }
 
-func (f *WOFPlacetypeFlag) Placetypes() []string {
+func (f *WOFPlacetypesFlag) Placetypes() []string {
 	return f.names
 }
 
-func (f *WOFPlacetypeFlag) String() string {
+func (f *WOFPlacetypesFlag) String() string {
 	return strings.Join(f.Placetypes(), ",")
 }
