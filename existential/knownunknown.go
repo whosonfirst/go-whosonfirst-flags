@@ -41,31 +41,14 @@ func (f *KnownUnknownFlag) Flag() int64 {
 	return f.flag
 }
 
-func (f *KnownUnknownFlag) True() bool {
-	return f.status
+func (f *KnownUnknownFlag) IsTrue() bool {
+	return f.status == true
 }
 
-func (f *KnownUnknownFlag) Confidence() bool {
+func (f *KnownUnknownFlag) IsFalse() bool {
+	return f.status == false
+}
+
+func (f *KnownUnknownFlag) IsKnown() bool {
 	return f.confidence
-}
-
-func (f *KnownUnknownFlag) Certain() bool {
-
-	if f.True() && f.Confidence() {
-		return true
-	}
-
-	return false
-}
-
-func (f *KnownUnknownFlag) String() string {
-
-	switch f.flag {
-	case 0:
-		return "FALSE"
-	case 1:
-		return "TRUE"
-	default:
-		return "UNKNOWN"
-	}
 }
