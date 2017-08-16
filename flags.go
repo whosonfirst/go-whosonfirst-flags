@@ -11,5 +11,6 @@ type ExistentialFlag interface {
 
 type PlacetypeFlag interface {
 	Matches(PlacetypeFlag) bool
+	Placetypes() []string
 	String() string
 }

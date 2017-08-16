@@ -10,6 +10,7 @@ self:   prep rmdeps
 	if test -d src; then rm -rf src; fi
 	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/
 	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/existential
+	mkdir -p src/github.com/whosonfirst/go-whosonfirst-flags/placetypes
 	cp *.go src/github.com/whosonfirst/go-whosonfirst-flags
 	cp existential/*.go src/github.com/whosonfirst/go-whosonfirst-flags/existential/
 	cp placetypes/*.go src/github.com/whosonfirst/go-whosonfirst-flags/placetypes/
@@ -19,6 +20,7 @@ rmdeps:
 	if test -d src; then rm -rf src; fi 
 
 deps:   rmdeps
+	@GOPATH=$(GOPATH) go get -u "github.com/whosonfirst/go-whosonfirst-placetypes"
 
 vendor-deps: deps
 	if test ! -d vendor; then mkdir vendor; fi
