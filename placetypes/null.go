@@ -14,7 +14,11 @@ func NewNullFlag() (*NullFlag, error) {
 	return &f, nil
 }
 
-func (f *NullFlag) Matches(others ...flags.PlacetypesFlag) bool {
+func (f *NullFlag) MatchesAny(others ...flags.PlacetypesFlag) bool {
+	return true
+}
+
+func (f *NullFlag) MatchesAll(others ...flags.PlacetypesFlag) bool {
 	return true
 }
 

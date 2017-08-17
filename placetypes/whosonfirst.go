@@ -39,7 +39,7 @@ func NewPlacetypesFlag(str_placetypes string) (*PlacetypesFlag, error) {
 	return &f, nil
 }
 
-func (f *PlacetypesFlag) Matches(others ...flags.PlacetypesFlag) bool {
+func (f *PlacetypesFlag) MatchesAny(others ...flags.PlacetypesFlag) bool {
 
 	ours := f.Placetypes()
 
@@ -56,6 +56,33 @@ func (f *PlacetypesFlag) Matches(others ...flags.PlacetypesFlag) bool {
 				}
 			}
 		}
+	}
+
+	return false
+}
+
+func (f *PlacetypesFlag) MatchesAll(others ...flags.PlacetypesFlag) bool {
+
+	ours := f.Placetypes()
+	matches := 0
+
+	for _, o := range others {
+
+		theirs := o.Placetypes()
+
+		for _, a := range theirs {
+
+			for _, b := range ours {
+
+				if a == b {
+					matches += 1
+				}
+			}
+		}
+	}
+
+	if matches == len(others) {
+		return true
 	}
 
 	return false
