@@ -10,9 +10,9 @@ type ExistentialFlag interface {
 	String() string
 }
 
-type PlacetypesFlag interface {
-	MatchesAny(...PlacetypesFlag) bool
-	MatchesAll(...PlacetypesFlag) bool
-	Placetypes() []string
+type PlacetypeFlag interface {
+	MatchesAny(...PlacetypeFlag) bool
+	MatchesAll(...PlacetypeFlag) bool
+	Placetype() string
 	String() string
 }
