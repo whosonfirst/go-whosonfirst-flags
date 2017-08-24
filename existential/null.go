@@ -15,7 +15,7 @@ func NewNullFlag() (flags.ExistentialFlag, error) {
 	return &n, nil
 }
 
-func (f *KnownUnknownFlag) StringFlag() string {
+func (f *NullFlag) StringFlag() string {
 	return strconv.FormatInt(f.Flag(), 10)
 }
 
