@@ -17,3 +17,9 @@ type PlacetypeFlag interface {
 	Placetype() string
 	String() string
 }
+
+type CustomFlag interface {
+	MatchesAny(...CustomFlag) bool
+	MatchesAll(...CustomFlag) bool
+	String() string
+}
