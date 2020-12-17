@@ -11,6 +11,13 @@ type ExistentialFlag interface {
 	String() string
 }
 
+type AlternateGeometryFlag interface {
+	MatchesAny(...AlternateGeometryFlag) bool
+	MatchesAll(...AlternateGeometryFlag) bool
+	Label() string	
+	String() string
+}
+
 type PlacetypeFlag interface {
 	MatchesAny(...PlacetypeFlag) bool
 	MatchesAll(...PlacetypeFlag) bool
