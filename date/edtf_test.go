@@ -11,7 +11,7 @@ func TestEDTFDate(t *testing.T) {
 	d2_str := "2020-04-01"
 	d3_str := "2020-05-01"
 
-	d1, err := NewEDTFFlag(d1_str)
+	d1, err := NewEDTFDateFlag(d1_str)
 
 	if err != nil {
 		t.Fatalf("Failed to create date flag for '%s', %v", d1_str, err)
@@ -21,7 +21,7 @@ func TestEDTFDate(t *testing.T) {
 		t.Fatalf("Invalid string value. Expected '%s' but got '%s'", d1_str, d1.String())
 	}
 
-	d2, err := NewEDTFFlag(d2_str)
+	d2, err := NewEDTFDateFlag(d2_str)
 
 	if err != nil {
 		t.Fatalf("Failed to create date flag for '%s', %v", d2_str, err)
@@ -31,7 +31,7 @@ func TestEDTFDate(t *testing.T) {
 		t.Fatalf("Match fail: '%s' should match '%s'", d2_str, d1_str)
 	}
 
-	d3, err := NewEDTFFlag(d3_str)
+	d3, err := NewEDTFDateFlag(d3_str)
 
 	if err != nil {
 		t.Fatalf("Failed to create date flag for '%s', %v", d3_str, err)

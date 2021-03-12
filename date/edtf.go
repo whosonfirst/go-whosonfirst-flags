@@ -12,20 +12,20 @@ const INTERSECTS int = 1
 const INNER int = 0
 const OUTER int = 1
 
-type EDTFFlag struct {
+type EDTFDateFlag struct {
 	flags.DateFlag
 	date     *edtf.EDTFDate
 	mode     int
 	boundary int
 }
 
-func NewEDTFFlagsArray(names ...string) ([]flags.DateFlag, error) {
+func NewEDTFDateFlagsArray(names ...string) ([]flags.DateFlag, error) {
 
 	pt_flags := make([]flags.DateFlag, 0)
 
 	for _, name := range names {
 
-		fl, err := NewEDTFFlag(name)
+		fl, err := NewEDTFDateFlag(name)
 
 		if err != nil {
 			return nil, err
@@ -37,7 +37,7 @@ func NewEDTFFlagsArray(names ...string) ([]flags.DateFlag, error) {
 	return pt_flags, nil
 }
 
-func NewEDTFFlag(edtf_str string) (flags.DateFlag, error) {
+func NewEDTFDateFlag(edtf_str string) (flags.DateFlag, error) {
 
 	d, err := parser.ParseString(edtf_str)
 
@@ -45,7 +45,12 @@ func NewEDTFFlag(edtf_str string) (flags.DateFlag, error) {
 		return nil, err
 	}
 
-	fl := EDTFFlag{
+	return NewEDTFDateFlagWithDate(d)
+}
+
+func NewEDTFDateFlagWithDate(d *edtf.EDTFDate) (flags.DateFlag, error) {
+
+	fl := EDTFDateFlag{
 		date:     d,
 		mode:     CONTAINS,
 		boundary: OUTER,
@@ -54,7 +59,7 @@ func NewEDTFFlag(edtf_str string) (flags.DateFlag, error) {
 	return &fl, nil
 }
 
-func (fl *EDTFFlag) InnerRange() (*int64, *int64) {
+func (fl *EDTFDateFlag) InnerRange() (*int64, *int64) {
 
 	start_ts := fl.date.Start.Upper.Timestamp
 	end_ts := fl.date.End.Lower.Timestamp
@@ -62,7 +67,7 @@ func (fl *EDTFFlag) InnerRange() (*int64, *int64) {
 	return fl.describeRange(start_ts, end_ts)
 }
 
-func (fl *EDTFFlag) OuterRange() (*int64, *int64) {
+func (fl *EDTFDateFlag) OuterRange() (*int64, *int64) {
 
 	start_ts := fl.date.Start.Lower.Timestamp
 	end_ts := fl.date.End.Upper.Timestamp
@@ -70,7 +75,7 @@ func (fl *EDTFFlag) OuterRange() (*int64, *int64) {
 	return fl.describeRange(start_ts, end_ts)
 }
 
-func (fl *EDTFFlag) describeRange(start_ts *edtf.Timestamp, end_ts *edtf.Timestamp) (*int64, *int64) {
+func (fl *EDTFDateFlag) describeRange(start_ts *edtf.Timestamp, end_ts *edtf.Timestamp) (*int64, *int64) {
 
 	if start_ts != nil && end_ts != nil {
 		start := start_ts.Unix()
@@ -91,7 +96,7 @@ func (fl *EDTFFlag) describeRange(start_ts *edtf.Timestamp, end_ts *edtf.Timesta
 	return nil, nil
 }
 
-func (fl *EDTFFlag) MatchesAny(others ...flags.DateFlag) bool {
+func (fl *EDTFDateFlag) MatchesAny(others ...flags.DateFlag) bool {
 
 	for _, o := range others {
 
@@ -103,7 +108,7 @@ func (fl *EDTFFlag) MatchesAny(others ...flags.DateFlag) bool {
 	return false
 }
 
-func (fl *EDTFFlag) MatchesAll(others ...flags.DateFlag) bool {
+func (fl *EDTFDateFlag) MatchesAll(others ...flags.DateFlag) bool {
 
 	matches := 0
 
@@ -122,7 +127,7 @@ func (fl *EDTFFlag) MatchesAll(others ...flags.DateFlag) bool {
 	return false
 }
 
-func (fl *EDTFFlag) matches(o flags.DateFlag) bool {
+func (fl *EDTFDateFlag) matches(o flags.DateFlag) bool {
 
 	switch fl.boundary {
 	case INNER:
@@ -142,7 +147,7 @@ func (fl *EDTFFlag) matches(o flags.DateFlag) bool {
 	}
 }
 
-func (fl *EDTFFlag) containsInner(o flags.DateFlag) bool {
+func (fl *EDTFDateFlag) containsInner(o flags.DateFlag) bool {
 
 	start, end := fl.InnerRange()
 	o_start, o_end := o.InnerRange()
@@ -158,7 +163,7 @@ func (fl *EDTFFlag) containsInner(o flags.DateFlag) bool {
 	return fl.contains(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) containsOuter(o flags.DateFlag) bool {
+func (fl *EDTFDateFlag) containsOuter(o flags.DateFlag) bool {
 
 	start, end := fl.OuterRange()
 	o_start, o_end := o.OuterRange()
@@ -174,7 +179,7 @@ func (fl *EDTFFlag) containsOuter(o flags.DateFlag) bool {
 	return fl.contains(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) contains(start int64, end int64, o_start int64, o_end int64) bool {
+func (fl *EDTFDateFlag) contains(start int64, end int64, o_start int64, o_end int64) bool {
 
 	if start > o_start {
 		return false
@@ -187,7 +192,7 @@ func (fl *EDTFFlag) contains(start int64, end int64, o_start int64, o_end int64)
 	return true
 }
 
-func (fl *EDTFFlag) intersectsInner(o flags.DateFlag) bool {
+func (fl *EDTFDateFlag) intersectsInner(o flags.DateFlag) bool {
 
 	start, end := fl.InnerRange()
 	o_start, o_end := o.InnerRange()
@@ -203,7 +208,7 @@ func (fl *EDTFFlag) intersectsInner(o flags.DateFlag) bool {
 	return fl.intersects(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) intersectsOuter(o flags.DateFlag) bool {
+func (fl *EDTFDateFlag) intersectsOuter(o flags.DateFlag) bool {
 
 	start, end := fl.OuterRange()
 	o_start, o_end := o.OuterRange()
@@ -219,7 +224,7 @@ func (fl *EDTFFlag) intersectsOuter(o flags.DateFlag) bool {
 	return fl.intersects(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) intersects(start int64, end int64, o_start int64, o_end int64) bool {
+func (fl *EDTFDateFlag) intersects(start int64, end int64, o_start int64, o_end int64) bool {
 
 	if o_start > end {
 		return false
@@ -232,6 +237,6 @@ func (fl *EDTFFlag) intersects(start int64, end int64, o_start int64, o_end int6
 	return true
 }
 
-func (fl *EDTFFlag) String() string {
+func (fl *EDTFDateFlag) String() string {
 	return fl.date.EDTF
 }
