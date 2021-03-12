@@ -1,6 +1,14 @@
 # github.com/sfomuseum/go-edtf v0.2.2
 github.com/sfomuseum/go-edtf
-# github.com/whosonfirst/go-whosonfirst-placetypes v0.2.4
+github.com/sfomuseum/go-edtf/calendar
+github.com/sfomuseum/go-edtf/common
+github.com/sfomuseum/go-edtf/level0
+github.com/sfomuseum/go-edtf/level1
+github.com/sfomuseum/go-edtf/level2
+github.com/sfomuseum/go-edtf/parser
+github.com/sfomuseum/go-edtf/re
+github.com/sfomuseum/go-edtf/tests
+# github.com/whosonfirst/go-whosonfirst-placetypes v0.3.0
 github.com/whosonfirst/go-whosonfirst-placetypes
 github.com/whosonfirst/go-whosonfirst-placetypes/placetypes
 # github.com/whosonfirst/go-whosonfirst-sources v0.1.0
