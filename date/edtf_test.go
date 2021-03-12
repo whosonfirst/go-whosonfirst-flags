@@ -55,7 +55,7 @@ func TestEDTFDate(t *testing.T) {
 		t.Fatalf("Match fail: '%s' should not match null date", d1_str)
 	}
 
-	if nd.MatchesAny(d2) {
-		t.Fatalf("Match fail: null date should not match '%s'", d2_str)
+	if !nd.MatchesAny(d2) {
+		t.Fatalf("Match fail: null date should match '%s'", d2_str)
 	}
 }
