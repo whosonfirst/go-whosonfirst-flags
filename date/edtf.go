@@ -93,7 +93,7 @@ func (fl *EDTFFlag) describeRange(start_ts *edtf.Timestamp, end_ts *edtf.Timesta
 
 func (fl *EDTFFlag) MatchesAny(others ...flags.DateFlag) bool {
 
-	for _, _ = range others {
+	for _, o := range others {
 
 		if fl.matches(o) {
 			return true
@@ -127,14 +127,14 @@ func (fl *EDTFFlag) matches(o flags.DateFlag) bool {
 	switch fl.boundary {
 	case INNER:
 		switch fl.mode {
-		case INTERSECT:
+		case INTERSECTS:
 			return fl.intersectsInner(o)
 		default:
 			return fl.intersectsOuter(o)
 		}
 	default:
 		switch fl.mode {
-		case INTERSECT:
+		case INTERSECTS:
 			return fl.containsInner(o)
 		default:
 			return fl.containsOuter(o)
@@ -147,7 +147,15 @@ func (fl *EDTFFlag) containsInner(o flags.DateFlag) bool {
 	start, end := fl.InnerRange()
 	o_start, o_end := o.InnerRange()
 
-	return fl.contains(start, end, o_start, o_end)
+	if start == nil || end == nil {
+		return false
+	}
+
+	if o_start == nil || o_end == nil {
+		return false
+	}
+
+	return fl.contains(*start, *end, *o_start, *o_end)
 }
 
 func (fl *EDTFFlag) containsOuter(o flags.DateFlag) bool {
@@ -155,10 +163,18 @@ func (fl *EDTFFlag) containsOuter(o flags.DateFlag) bool {
 	start, end := fl.OuterRange()
 	o_start, o_end := o.OuterRange()
 
-	return fl.contains(start, end, o_start, o_end)
+	if start == nil || end == nil {
+		return false
+	}
+
+	if o_start == nil || o_end == nil {
+		return false
+	}
+
+	return fl.contains(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) contains(start *int64, end *int64, o_start *int64, o_end *int64) bool {
+func (fl *EDTFFlag) contains(start int64, end int64, o_start int64, o_end int64) bool {
 
 	if start > o_start {
 		return false
@@ -176,7 +192,15 @@ func (fl *EDTFFlag) intersectsInner(o flags.DateFlag) bool {
 	start, end := fl.InnerRange()
 	o_start, o_end := o.InnerRange()
 
-	return fl.intersects(start, end, o_start, o_end)
+	if start == nil || end == nil {
+		return false
+	}
+
+	if o_start == nil || o_end == nil {
+		return false
+	}
+
+	return fl.intersects(*start, *end, *o_start, *o_end)
 }
 
 func (fl *EDTFFlag) intersectsOuter(o flags.DateFlag) bool {
@@ -184,10 +208,18 @@ func (fl *EDTFFlag) intersectsOuter(o flags.DateFlag) bool {
 	start, end := fl.OuterRange()
 	o_start, o_end := o.OuterRange()
 
-	return fl.intersects(start, end, o_start, o_end)
+	if start == nil || end == nil {
+		return false
+	}
+
+	if o_start == nil || o_end == nil {
+		return false
+	}
+
+	return fl.intersects(*start, *end, *o_start, *o_end)
 }
 
-func (fl *EDTFFlag) intersects(start *int64, end *int64, o_start *int64, o_end *int64) bool {
+func (fl *EDTFFlag) intersects(start int64, end int64, o_start int64, o_end int64) bool {
 
 	if o_start > end {
 		return false
