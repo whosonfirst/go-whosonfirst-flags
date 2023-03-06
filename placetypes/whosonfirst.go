@@ -1,13 +1,16 @@
 package placetypes
 
 import (
+	"context"
+	"fmt"
+	
 	"github.com/whosonfirst/go-whosonfirst-flags"
-	wof "github.com/whosonfirst/go-whosonfirst-placetypes"
+	wof_placetypes "github.com/whosonfirst/go-whosonfirst-placetypes"
 )
 
 type PlacetypeFlag struct {
 	flags.PlacetypeFlag
-	pt *wof.WOFPlacetype
+	pt *wof_placetypes.WOFPlacetype
 }
 
 func NewPlacetypeFlagsArray(names ...string) ([]flags.PlacetypeFlag, error) {
@@ -19,7 +22,7 @@ func NewPlacetypeFlagsArray(names ...string) ([]flags.PlacetypeFlag, error) {
 		fl, err := NewPlacetypeFlag(name)
 
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("Failed to create new flag for '%s', %w", name, err)
 		}
 
 		pt_flags = append(pt_flags, fl)
@@ -30,10 +33,21 @@ func NewPlacetypeFlagsArray(names ...string) ([]flags.PlacetypeFlag, error) {
 
 func NewPlacetypeFlag(name string) (flags.PlacetypeFlag, error) {
 
-	pt, err := wof.GetPlacetypeByName(name)
+	foo_uri := "whosonfirst://"
+
+	ctx := context.Background()
+	foo, err := wof_placetypes.NewFoo(ctx, foo_uri)
 
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Failed to derive new foo, %w", err)
+	}
+
+	spec := foo.Specification()
+	
+	pt, err := spec.GetPlacetypeByName(name)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to retrieve placetype with name '%s', %w", name, err)
 	}
 
 	f := PlacetypeFlag{
