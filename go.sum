@@ -1,9 +1,11 @@
-github.com/dominikbraun/graph v0.16.0 h1:M8B6g/uVYHQ2TG+AdbRtyXg7/ASHZCihzzkttFUHidA=
-github.com/dominikbraun/graph v0.16.0/go.mod h1:yOjYyogZLY1LSG9E33JWZJiq5k83Qy2C6POAuiViluc=
+github.com/aaronland/go-roster v1.0.0 h1:FRDGrTqsYySKjWnAhbBGXyeGlI/o5/t9FZYCbUmyQtI=
+github.com/aaronland/go-roster v1.0.0/go.mod h1:KIsYZgrJlAsyb9LsXSCvlqvbcCBVjCSqcQiZx42i9ro=
+github.com/dominikbraun/graph v0.16.1 h1:ZtzDQFo32vxwSUsK4ioX8bfE45xoh8hQfavFMlKpaC8=
+github.com/dominikbraun/graph v0.16.1/go.mod h1:yOjYyogZLY1LSG9E33JWZJiq5k83Qy2C6POAuiViluc=
 github.com/sfomuseum/go-edtf v1.1.1 h1:R5gElndHGDaK/rGSh2X+ulaLtlcHCdQA1cTzB8e9wv8=
 github.com/sfomuseum/go-edtf v1.1.1/go.mod h1:1rP0EJZ/84j3HO80vGcnG2T9MFBDAFyTNtjrr8cv3T4=
-github.com/whosonfirst/go-whosonfirst-placetypes v0.6.0 h1:O0GApVzyGB1vrSWf+v8J3SfUHPOjK0Ic5anL6m90y5Y=
-github.com/whosonfirst/go-whosonfirst-placetypes v0.6.0/go.mod h1:JSapxWcL8Zu64GRiaMJrYkdFX8z6KVNx/RsJ8aBKv7A=
+github.com/whosonfirst/go-whosonfirst-placetypes v0.7.0 h1:hm1dySC23ZZYHDleAE201+s5HTUtgle38JlKzfVZVHA=
+github.com/whosonfirst/go-whosonfirst-placetypes v0.7.0/go.mod h1:d7S4er4OFfFsgzMOnHH8mX8q+iPhXWB+merbrMDx/rk=
 github.com/whosonfirst/go-whosonfirst-sources v0.1.0 h1:JuKLa6KWke22jBfJ1pM9WQHoz1/3pbDv2C+aR+THPPQ=
 github.com/whosonfirst/go-whosonfirst-sources v0.1.0/go.mod h1:EUMHyGzUmqPPxlMmOp+28BFeoBdxxE0HCKRd67lkqGM=
 github.com/whosonfirst/go-whosonfirst-uri v1.3.0 h1:LYOVLqP9rWQxauYVkdw65j5LZxEi8OK0GHh/qCEpX4g=
