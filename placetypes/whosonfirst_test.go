@@ -19,5 +19,5 @@ func TestNewPlacetypeFlag(t *testing.T) {
 			t.Fatalf("Failed to create flag for '%s', %v", n, err)
 		}
 	}
-	
+
 }
