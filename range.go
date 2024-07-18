@@ -37,10 +37,10 @@ func (fl *Float64RangeFlag) Max() float64 {
 func (fl *Float64RangeFlag) MatchesAny(others ...RangeFlag) bool {
 
 	matches := false
-	
+
 	for _, o := range others {
 
-		if o.Max() >= fl.Min() && o.Min() <= o.Max(){
+		if o.Max() >= fl.Min() && o.Min() <= o.Max() {
 			matches = true
 			break
 		}
@@ -52,21 +52,19 @@ func (fl *Float64RangeFlag) MatchesAny(others ...RangeFlag) bool {
 func (fl *Float64RangeFlag) MatchesAll(others ...RangeFlag) bool {
 
 	matches := 0
-	
+
 	for _, o := range others {
 
-		if o.Max() < fl.Min() || o.Min() > o.Max(){
+		if o.Max() < fl.Min() || o.Min() > o.Max() {
 			break
 		} else {
 			matches += 1
 		}
 	}
 
-	if matches != len(others){
+	if matches != len(others) {
 		return false
 	}
 
 	return true
 }
-
-
